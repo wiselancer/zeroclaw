@@ -2048,8 +2048,8 @@ Allowlist Telegram username (without '@') or numeric user ID.",
             }
 
             // Handle blockquotes: > text → <blockquote>text</blockquote>
-            let (is_blockquote, inline_line) = if trimmed_line.starts_with("> ") {
-                (true, &trimmed_line[2..])
+            let (is_blockquote, inline_line) = if let Some(rest) = trimmed_line.strip_prefix("> ") {
+                (true, rest)
             } else if trimmed_line == ">" {
                 (true, "")
             } else {
