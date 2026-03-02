@@ -2866,7 +2866,8 @@ impl Channel for TelegramChannel {
         let body = serde_json::json!({
             "chat_id": chat_id,
             "message_id": message_id_parsed,
-            "text": display_text,
+            "text": Self::markdown_to_telegram_html(display_text),
+            "parse_mode": "HTML",
         });
 
         let resp = self
